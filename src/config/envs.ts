@@ -7,11 +7,13 @@ interface EnvVars {
 
   NATS_SERVERS: string[];
 
-  // DB_HOST: string;
-  // DB_PORT: number;
-  // DB_USER: string;
-  // DB_PASSWORD: string;
-  // DB_NAME: string;
+  DB_HOST: string;
+  DB_PORT: number;
+  DB_USER: string;
+  DB_PASSWORD: string;
+  DB_NAME: string;
+
+  JWT_SECRET: string;
 }
 
 const envsSchema = joi.object({
@@ -20,10 +22,12 @@ const envsSchema = joi.object({
   NATS_SERVERS: joi.array().items(joi.string()).required(),
 
   // DB_HOST: joi.string().required(),
-  // DB_PORT: joi.number().required(),
-  // DB_USER: joi.string().required(),
-  // DB_PASSWORD: joi.string().required(),
-  // DB_NAME: joi.string().required(),
+  DB_PORT: joi.number().required(),
+  DB_USER: joi.string().required(),
+  DB_PASSWORD: joi.string().required(),
+  DB_NAME: joi.string().required(),
+
+  JWT_SECRET: joi.string().required(),
 })
 .unknown(true);
 
@@ -41,9 +45,11 @@ export const envs = {
 
   natsServers: envVars.NATS_SERVERS,
 
-  // dbHost: envVars.DB_HOST,
-  // dbPort: envVars.DB_PORT,
-  // dbUser: envVars.DB_USER,
-  // dbPassword: envVars.DB_PASSWORD,
-  // dbName: envVars.DB_NAME
+  dbHost: envVars.DB_HOST,
+  dbPort: envVars.DB_PORT,
+  dbUser: envVars.DB_USER,
+  dbPassword: envVars.DB_PASSWORD,
+  dbName: envVars.DB_NAME,
+
+  jwtSecret: envVars.JWT_SECRET,
 }
